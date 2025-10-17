@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 899881541}
   m_Layer: 0
   m_Name: Ground_Tiles
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1580,6 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  jumpForce: 10
 --- !u!1 &1595526005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1750,7 @@ GameObject:
   - component: {fileID: 1779530112}
   m_Layer: 0
   m_Name: FlatformTiles
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3230,7 +3231,7 @@ GameObject:
   - component: {fileID: 2118618970}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
