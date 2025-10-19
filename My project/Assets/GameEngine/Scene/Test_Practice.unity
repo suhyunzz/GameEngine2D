@@ -3279,6 +3279,7 @@ GameObject:
   - component: {fileID: 1228716142}
   - component: {fileID: 1228716140}
   - component: {fileID: 1228716145}
+  - component: {fileID: 1228716146}
   m_Layer: 0
   m_Name: dog-idlet1
   m_TagString: Obstacle
@@ -3320,7 +3321,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12199342, y: 0.44652545}
+  m_Offset: {x: -0.09391594, y: 0.44652545}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -3330,7 +3331,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1028345, y: 0.8930509}
+  m_Size: {x: 1.0466795, y: 0.8930509}
   m_EdgeRadius: 0
 --- !u!95 &1228716142
 Animator:
@@ -3340,7 +3341,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228716139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b6300bf4af167944d8e9e2019f335f7f, type: 2}
   m_CullingMode: 0
@@ -3431,13 +3432,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228716139}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da12dccf9d035d42aea976ab2744ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  moveDistance: 5
+  moveSpeed: 5
+--- !u!50 &1228716146
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228716139}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1232888042
 GameObject:
   m_ObjectHideFlags: 0
