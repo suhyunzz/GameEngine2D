@@ -7,18 +7,23 @@ public class PlayerController : MonoBehaviour
     
     [Header("점프 설정")]
     public float jumpForce = 10.0f;
-    
+
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator anim;
     private bool isGrounded = false;
     private int score = 0;  // 점수 추가
     private Vector3 startPosition;
 void Start()
 {
     rb = GetComponent<Rigidbody2D>();
+    sr = GetComponent<SpriteRenderer>();
+    anim = GetComponent<Animator>();
     
     // 게임 시작 시 위치를 저장 - 새로 추가!
     startPosition = transform.position;
     Debug.Log("시작 위치 저장: " + startPosition);
+
 }
     
     void Update()
@@ -27,17 +32,35 @@ void Start()
         float moveX = 0f;
         if (Input.GetKey(KeyCode.A)) moveX = -1f;
         if (Input.GetKey(KeyCode.D)) moveX = 1f;
-        
-        rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
-        
+
+        //달리기 모드
+        float currentMoveSpeed = moveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(moveX) > 0)
+        {
+            currentMoveSpeed = moveSpeed * 2f;
+        }
+
+        rb.velocity = new Vector2(moveX * currentMoveSpeed, rb.velocity.y);
+
+        if (moveX > 0)
+            sr.flipX = false;  // 오른쪽 바라보기
+        else if (moveX < 0)
+            sr.flipX = true;   // 왼쪽 바라보기
+
+        anim.SetFloat("Speed", Mathf.Abs(moveX)); // moveX가 0이면 Idle, 0보다 크면 달리기
+
         // 점프 (지난 시간에 배운 내용)
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             Debug.Log("점프!");
+            anim.SetBool("isJumping", true);
         }
+        Debug.Log("현재 이동 속도" + currentMoveSpeed);
     }
+    
 
+    
     // 바닥 충돌 감지 (Collision)
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -46,6 +69,7 @@ void Start()
         {
             isGrounded = true;
             Debug.Log("바닥에 착지!");
+            anim.SetBool("isJumping", false);
         }
 
         // 장애물 충돌 감지 - 새로 추가!
@@ -65,7 +89,8 @@ void Start()
 		if (collision.gameObject.CompareTag("Ground"))
 		{
 		    Debug.Log("바닥에서 떨어짐");
-		    isGrounded = false;
+            isGrounded = false;
+            anim.SetBool("isJumping", true);
 		}
 	}
 
@@ -80,13 +105,13 @@ void OnTriggerEnter2D(Collider2D other)
             Destroy(other.gameObject);
         }
         
-        // 별 수집 (기존 코드)
-        if (other.CompareTag("Coin"))
-        {
-            score += 5;
-            Debug.Log("⭐ 별 획득! +5점! 현재 점수: " + score);
-            Destroy(other.gameObject);
-        }
+        // // 별 수집 (기존 코드)
+        // if (other.CompareTag("Star"))
+        // {
+        //     score += 5;
+        //     Debug.Log("⭐ 별 획득! +5점! 현재 점수: " + score);
+        //     Destroy(other.gameObject);
+        // }
         
         // 골 도달 - 새로 추가!
         if (other.CompareTag("Goal"))
