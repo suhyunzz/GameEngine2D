@@ -12,7 +12,7 @@ public class PlayerController_001 : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     private bool isGrounded = false;
-    private int score = 0;  // 점수 추가
+    // private int score = 0;  // 점수 추가
     private Vector3 startPosition;
 void Start()
 {
@@ -60,28 +60,27 @@ void Start()
     }
     
 
-    
-    // 바닥 충돌 감지 (Collision)
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // 바닥 충돌 감지 (기존 코드)
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            Debug.Log("바닥에 착지!");
-            anim.SetBool("isJumping", false);
         }
-
-        // 장애물 충돌 감지 - 새로 추가!
+        // 장애물 충돌 시 생명 감소로 변경!
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("⚠️ 장애물 충돌! 시작 지점으로 돌아갑니다.");
-
-            // 시작 위치로 순간이동
+            Debug.Log("⚠️ 장애물 충돌! 생명 -1");
+            // GameManager 찾아서 생명 감소
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            
+            if (gameManager != null)
+            {
+                gameManager.TakeDamage(1);  // 생명 1 감소
+            }
+            
+            // 짧은 무적 시간 (0.5초 후 원래 위치로)
             transform.position = startPosition;
-
-            // 속도 초기화 (안 하면 계속 날아감)
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = Vector2.zero;
         }
     }
 	void OnCollisionExit2D(Collision2D collision)
@@ -95,15 +94,15 @@ void Start()
 	}
 
     // 아이템 수집 감지 (Trigger)
-void OnTriggerEnter2D(Collider2D other)
-    {
-        // 코인 수집 (기존 코드)
-        if (other.CompareTag("Coin"))
-        {
-            score += 1;
-            Debug.Log("💰 코인 획득! 현재 점수: " + score);
-            Destroy(other.gameObject);
-        }
+// void OnTriggerEnter2D(Collider2D other)
+//     {
+        // // 코인 수집 (기존 코드)
+        // if (other.CompareTag("Coin"))
+        // {
+        //     score += 1;
+        //     Debug.Log("💰 코인 획득! 현재 점수: " + score);
+        //     Destroy(other.gameObject);
+        // }
         
         // // 별 수집 (기존 코드)
         // if (other.CompareTag("Star"))
@@ -113,14 +112,27 @@ void OnTriggerEnter2D(Collider2D other)
         //     Destroy(other.gameObject);
         // }
         
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 코인 수집 (기존)
+        // if (other.CompareTag("Coin"))
+        // {
+        //     GameManager gameManager = FindObjectOfType<GameManager>();
+        //     if (gameManager != null)
+        //     {
+        //         gameManager.AddScore(10);
+        //     }
+        //     Destroy(other.gameObject);
+        // }
         // 골 도달 - 새로 추가!
         if (other.CompareTag("Goal"))
         {
-            Debug.Log("🎉🎉🎉 게임 클리어! 🎉🎉🎉");
-            Debug.Log("최종 점수: " + score + "점");
-            
-            // 캐릭터 조작 비활성화
-            enabled = false;
+            Debug.Log("🎉 Goal Reached!");
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            if (gameManager != null)
+            {
+                gameManager.GameClear();  // 게임 클리어 함수 호출
+            }
         }
     }
 }
