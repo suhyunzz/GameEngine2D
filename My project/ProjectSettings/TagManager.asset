@@ -8,6 +8,9 @@ TagManager:
   - Coin
   - Obstacle
   - Goal
+  - Stage1_Egg
+  - Stage1_Monster
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: d3ae29bc873704d6197af9ad030f1b1c
-AssetOrigin:
-  serializedVersion: 1
-  productId: 103349
-  packageName: Sunny Land
-  packageVersion: 1.1
-  assetPath: Assets/SunnyLand Artwork/Environment/props/small-platform.png
-  uploadId: 540939
+guid: 50985255e3852f542ba3abde2366655c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -76,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -89,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -102,7 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: WebGL
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -115,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 4
     buildTarget: Server
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
