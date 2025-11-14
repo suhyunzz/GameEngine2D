@@ -11,14 +11,16 @@ TagManager:
   - Stage1_Egg
   - Stage1_Monster
   - Wall
+  - Stage1_Boss
+  - Stage1_Home
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Monster
   - 
   - 
   - 
